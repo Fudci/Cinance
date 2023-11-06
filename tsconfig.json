@@ -1,3 +1,17 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["src/Pages/*"],
+      "@atom/*": ["src/Atom/*"],
+      "@assets/*": ["src/Assets/*"],
+      "@helpers/*": ["src/Helpers/*"],
+      "@molecules/*": ["src/Molecules/*"],
+      "@navigators/*": ["src/Navigators/*"],
+      "@organisms/*": ["src/Organisms/*"],
+
+    }
+  }
 }
