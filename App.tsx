@@ -5,7 +5,7 @@
  * @format
  */
 
-import Main from '@pages/Main';
+import Main from '@organisms/Main';
 import Test from '@pages/Test';
 import React from 'react';
 import type {PropsWithChildren} from 'react';
@@ -67,7 +67,6 @@ function App(): JSX.Element {
   return (
     <SafeAreaView style={backgroundStyle}>
       <Main />
-      <Test />
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}

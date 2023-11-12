@@ -4,15 +4,16 @@ module.exports = {
     [
       'module-resolver',
       {
+        root: ['.'],
+        extensions: ['.js', '.ts', 'jsx', 'tsx'],
         alias: {
-          // This needs to be mirrored in tsconfig.json
-          pages: './src/Pages',
-          atom: './src/Atom',
-          assets: './src/Assets',
-          helpers: './src/Helpers',
-          molecules: './src/Molecules',
-          navigators: './src/Navigators',
-          organisms: './src/Organisms',
+          '@pages': './src/Pages',
+          '@atom': './src/Atom',
+          '@assets': './src/Assets',
+          '@helpers': './src/Helpers',
+          '@molecules': './src/Molecules',
+          '@navigators': './src/Navigators',
+          '@organisms': './src/Organisms',
         },
       },
     ],
