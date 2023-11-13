@@ -3,7 +3,7 @@ import React from 'react';
 
 const Main = () => {
   return (
-    <View>
+    <View style={{backgroundColor: 'red', flex: 1}}>
       <Text>Main</Text>
     </View>
   );
