@@ -6,8 +6,8 @@ import {
 } from '@react-navigation/stack';
 
 import {useNavigation} from '@react-navigation/native';
-import Main from '@pages/Main';
-
+import IntroPages from '@pages/IntroPages';
+import SplashScreenPages from '@pages/SplashScreenPages';
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
@@ -17,14 +17,11 @@ const StackNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        presentation: 'modal',
-        transitionSpec: {
-          open: TransitionSpecs.TransitionIOSSpec,
-          close: TransitionSpecs.TransitionIOSSpec,
-        },
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        presentation: 'transparentModal',
       }}>
-      <Stack.Screen name="Main" component={Main} />
+      <Stack.Screen name="SplashScreen" component={SplashScreenPages} />
+
+      <Stack.Screen name="IntroPages" component={IntroPages} />
     </Stack.Navigator>
   );
 };

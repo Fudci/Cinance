@@ -14,6 +14,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-Cinance-CinanceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Cinance-CinanceTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		4F494E9C443B4C79A17C7C6D /* Istok-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74A890138C004B2EAF95934E /* Istok-Bold.ttf */; };
+		ABB55754378D4D8BA582D26B /* Istok-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9175B0B996384247A68F953F /* Istok-BoldItalic.ttf */; };
+		772A5ECB29A84430B8FA5AF4 /* Istok-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCF43BD0AD804CE78AFF9B33 /* Istok-Italic.ttf */; };
+		2F7718E0B6EF41CEAF253D1B /* Istok-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36936FCCABAF4C818B4DDEC3 /* Istok-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Cinance/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Cinance-CinanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cinance-CinanceTests.release.xcconfig"; path = "Target Support Files/Pods-Cinance-CinanceTests/Pods-Cinance-CinanceTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		74A890138C004B2EAF95934E /* Istok-Bold.ttf */ = {isa = PBXFileReference; name = "Istok-Bold.ttf"; path = "../src/Assets/fonts/Istok-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9175B0B996384247A68F953F /* Istok-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Istok-BoldItalic.ttf"; path = "../src/Assets/fonts/Istok-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BCF43BD0AD804CE78AFF9B33 /* Istok-Italic.ttf */ = {isa = PBXFileReference; name = "Istok-Italic.ttf"; path = "../src/Assets/fonts/Istok-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		36936FCCABAF4C818B4DDEC3 /* Istok-Regular.ttf */ = {isa = PBXFileReference; name = "Istok-Regular.ttf"; path = "../src/Assets/fonts/Istok-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +130,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				90BD62F1D2484F69A8E6F5E2 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +156,18 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		90BD62F1D2484F69A8E6F5E2 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				74A890138C004B2EAF95934E /* Istok-Bold.ttf */,
+				9175B0B996384247A68F953F /* Istok-BoldItalic.ttf */,
+				BCF43BD0AD804CE78AFF9B33 /* Istok-Italic.ttf */,
+				36936FCCABAF4C818B4DDEC3 /* Istok-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +265,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				4F494E9C443B4C79A17C7C6D /* Istok-Bold.ttf in Resources */,
+				ABB55754378D4D8BA582D26B /* Istok-BoldItalic.ttf in Resources */,
+				772A5ECB29A84430B8FA5AF4 /* Istok-Italic.ttf in Resources */,
+				2F7718E0B6EF41CEAF253D1B /* Istok-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
