@@ -11,7 +11,7 @@ const SplashScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    console.log(userChoice);
+    console.log(userChoice, 'user choice');
     if (userChoice) {
       console.log('user has choice');
     } else {
