@@ -18,6 +18,10 @@ export default StyleSheet.create({
     height: 250,
     alignSelf: 'center',
   },
+  leftIcon: {
+    position: 'absolute',
+    left: 20,
+  },
   buttonSignUp: {
     flexDirection: 'row',
     paddingHorizontal: 20,
@@ -26,6 +30,7 @@ export default StyleSheet.create({
     gap: 10,
     paddingVertical: 10,
     borderRadius: 0,
+    justifyContent: 'center',
   },
   wrapperOr: {
     flexDirection: 'row',

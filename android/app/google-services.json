@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "840425733448",
+    "project_id": "cinance-ef168",
+    "storage_bucket": "cinance-ef168.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840425733448:android:7be4c91edf3480fc3a077d",
+        "android_client_info": {
+          "package_name": "com.cinance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSgkl0WjpYsL7QNXG7idVjM4brO8AmNaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

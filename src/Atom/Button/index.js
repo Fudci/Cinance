@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Pressable} from 'react-native';
+import {Pressable} from 'react-native';
 import React from 'react';
 
 const Button = ({onPress, children, style}) => {

@@ -8,9 +8,13 @@ import styles from './ModalLoginRegister.styles';
 import FastImage from 'react-native-fast-image';
 import Images from '@helpers/Images';
 import Text from '@atom/Text';
+import {GoogleSvg} from '@assets/svg';
+import {Navigate} from '@helpers/NavigationAction';
+import {useNavigation} from '@react-navigation/native';
 
-const ModalLoginRegister = ({visible, onPress}) => {
-  const isDarkMode = useColorScheme() == 'dark';
+const ModalLoginRegister = ({visible, onPress, setVisible}) => {
+  const isDarkMode = useColorScheme() === 'dark';
+  const navigation = useNavigation();
   return (
     <Modal visible={visible}>
       <View style={styles.container(isDarkMode)}>
@@ -30,9 +34,21 @@ const ModalLoginRegister = ({visible, onPress}) => {
         <Text fontFamily={'bold'} size={24}>
           Sign up to get 100 USDT trading free rebate!{' '}
         </Text>
-        <Button style={styles.buttonSignUp} onPress={() => console.log('tes')}>
-          <UserIcon color={'black'} size={30} />
-          <Text fontFamily={'bold'} size={20}>
+        <Button
+          style={styles.buttonSignUp}
+          onPress={() => {
+            setVisible(false);
+            navigation.navigate('SignUpPages');
+          }}>
+          <View style={styles.leftIcon}>
+            <UserIcon color={'black'} size={30} />
+          </View>
+          <Text
+            center={'center'}
+            size={16}
+            color={
+              isDarkMode ? ColorsDark.PRIMARY_MAIN : ColorsLight.PRIMARY_MAIN
+            }>
             Sign Up With Email or Phone
           </Text>
         </Button>
@@ -42,18 +58,25 @@ const ModalLoginRegister = ({visible, onPress}) => {
           <View style={styles.line} />
         </View>
         <Button style={styles.buttonSignUp} onPress={() => console.log('tes')}>
-          <UserIcon color={'black'} size={30} />
-          <Text fontFamily={'bold'} size={20}>
-            Sign Up With Email or Phone
+          <View style={styles.leftIcon}>
+            <GoogleSvg />
+          </View>
+          <Text
+            center={'center'}
+            size={16}
+            color={
+              isDarkMode ? ColorsDark.PRIMARY_MAIN : ColorsLight.PRIMARY_MAIN
+            }>
+            Continue with Google
           </Text>
         </Button>
         <Button style={styles.wrapperRow} onPress={() => console.log('tes')}>
           <Text>Already have an account?</Text>
-          <Text>Log In</Text>
+          <Text color={ColorsDark.PRIMARY_BUTTON}>Log In</Text>
         </Button>
         <Button style={styles.wrapperRow} onPress={() => console.log('tes')}>
           <Text>Need an entity account</Text>
-          <Text>Sign Up</Text>
+          <Text color={ColorsDark.PRIMARY_BUTTON}>Sign Up</Text>
         </Button>
       </View>
     </Modal>

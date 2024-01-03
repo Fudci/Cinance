@@ -5,15 +5,18 @@ import styles from './splashscreen.style';
 import {useMMKVString} from 'react-native-mmkv';
 import {useNavigation} from '@react-navigation/native';
 import Container from '@molecules/Container/Container';
+import firestore from '@react-native-firebase/firestore';
 
 const SplashScreen = () => {
   const [userChoice, setUserChoice] = useMMKVString('@userChoice');
   const navigation = useNavigation();
+  const [email, setEmail] = useMMKVString('@email');
+  const [password, setPassword] = useMMKVString('@password');
 
   useEffect(() => {
-    console.log(userChoice, 'user choice');
-    if (userChoice) {
+    if (email && password) {
       console.log('user has choice');
+      navigation.replace('BootomTabPages');
     } else {
       navigation.replace('IntroPages');
     }

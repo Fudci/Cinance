@@ -15,7 +15,8 @@ const IntroOrganisms = () => {
   const navigation = useNavigation();
   const [modalLoginRegister, setmodalLoginRegister] = useState(false);
   const handleCryptoNovicePress = async () => {
-    setmodalLoginRegister(true);
+    navigation.navigate('DashboardLoginSignUpPages');
+    // setmodalLoginRegister(true);
     // storage.set('@userChoice', 'Novice');
     // navigation.replace('LoginRegister');
   };
@@ -51,6 +52,7 @@ const IntroOrganisms = () => {
         </View>
       </View>
       <ModalCustom
+        setVisible={setmodalLoginRegister}
         visible={modalLoginRegister}
         onPress={() => setmodalLoginRegister(false)}
       />

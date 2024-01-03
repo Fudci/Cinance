@@ -14,6 +14,8 @@ module.exports = {
           '@molecules': './src/Molecules',
           '@navigators': './src/Navigators',
           '@organisms': './src/Organisms',
+          '@redux': './src/Redux',
+          '@services': './src/Services',
         },
       },
     ],
