@@ -7,7 +7,6 @@ const SelectionFilterHome = ({setValue}) => {
   const onPressFilter = value => {
     setFilter(value);
   };
-
   useEffect(() => {
     setValue(filter);
   }, [filter]);

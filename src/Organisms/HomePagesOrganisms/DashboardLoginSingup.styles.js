@@ -9,47 +9,11 @@ export default StyleSheet.create({
   body: {
     gap: pixelSizeVertical(20),
   },
-  image: {
-    width: 30,
-    height: 30,
-    borderRadius: 30,
-  },
-  buttonClose: {
-    marginTop: 30,
-  },
-  imageCyrpto: {
-    width: 250,
-    height: 250,
-    alignSelf: 'center',
-  },
-  leftIcon: {
-    position: 'absolute',
-    left: 20,
-  },
-  buttonSignUp: {
-    flexDirection: 'row',
-    paddingHorizontal: 20,
-    backgroundColor: '#FCD434',
-    alignItems: 'center',
-    gap: 10,
-    paddingVertical: 10,
-    borderRadius: 0,
-    justifyContent: 'center',
-  },
-  wrapperOr: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    gap: 5,
-  },
-  wrapperRow: {
-    flexDirection: 'row',
-    gap: 5,
-  },
-  line: {
-    backgroundColor: '#A9A9A9',
-    height: 0.5,
-    flex: 1,
-    width: '100%',
-  },
+  row: isDarkMode => ({
+    backgroundColor: isDarkMode
+      ? ColorsDark.PRIMARY_MAIN
+      : ColorsLight.PRIMARY_MAIN,
+    gap: 20,
+    paddingVertical: 15,
+  }),
 });

@@ -16,8 +16,22 @@ import styles from './BottomNavigators.styles';
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
-  const isDarkMode = useColorScheme();
-
+  const isDarkMode = useColorScheme() === 'dark';
+  const textisDarkMode = selected => {
+    if (isDarkMode) {
+      if (selected) {
+        return ColorsDark.BOTTOM_PRIMARY;
+      } else {
+        return ColorsDark.BOTTOM_PRIMARY_DISABLE;
+      }
+    } else {
+      if (selected) {
+        return ColorsLight.BOTTOM_PRIMARY;
+      } else {
+        return ColorsLight.BOTTOM_PRIMARY_DISABLE;
+      }
+    }
+  };
   return (
     <Tab.Navigator
       screenOptions={{
@@ -62,27 +76,9 @@ const BottomTabs = () => {
                     }
                   />
                 )}
-                {isDarkMode ? (
-                  <Text
-                    size={12}
-                    color={
-                      selected
-                        ? ColorsDark.BOTTOM_PRIMARY
-                        : ColorsDark.BOTTOM_PRIMARY_DISABLE
-                    }>
-                    Square
-                  </Text>
-                ) : (
-                  <Text
-                    size={12}
-                    color={
-                      selected
-                        ? ColorsDark.BOTTOM_PRIMARY
-                        : ColorsDark.BOTTOM_PRIMARY_DISABLE
-                    }>
-                    Square
-                  </Text>
-                )}
+                <Text size={12} color={textisDarkMode(selected)}>
+                  Market
+                </Text>
               </Pressable>
             );
           },
@@ -113,27 +109,9 @@ const BottomTabs = () => {
                     }
                   />
                 )}
-                {isDarkMode ? (
-                  <Text
-                    size={12}
-                    color={
-                      selected
-                        ? ColorsDark.BOTTOM_PRIMARY
-                        : ColorsDark.BOTTOM_PRIMARY_DISABLE
-                    }>
-                    Market
-                  </Text>
-                ) : (
-                  <Text
-                    size={12}
-                    color={
-                      selected
-                        ? ColorsDark.BOTTOM_PRIMARY
-                        : ColorsDark.BOTTOM_PRIMARY_DISABLE
-                    }>
-                    Market
-                  </Text>
-                )}
+                <Text size={12} color={textisDarkMode(selected)}>
+                  Square
+                </Text>
               </Pressable>
             );
           },
@@ -164,27 +142,9 @@ const BottomTabs = () => {
                     }
                   />
                 )}
-                {isDarkMode ? (
-                  <Text
-                    size={12}
-                    color={
-                      selected
-                        ? ColorsDark.BOTTOM_PRIMARY
-                        : ColorsDark.BOTTOM_PRIMARY_DISABLE
-                    }>
-                    Discover
-                  </Text>
-                ) : (
-                  <Text
-                    size={12}
-                    color={
-                      selected
-                        ? ColorsDark.BOTTOM_PRIMARY
-                        : ColorsDark.BOTTOM_PRIMARY_DISABLE
-                    }>
-                    Discover
-                  </Text>
-                )}
+                <Text size={12} color={textisDarkMode(selected)}>
+                  Discover
+                </Text>
               </Pressable>
             );
           },
@@ -215,27 +175,9 @@ const BottomTabs = () => {
                     }
                   />
                 )}
-                {isDarkMode ? (
-                  <Text
-                    size={12}
-                    color={
-                      selected
-                        ? ColorsDark.BOTTOM_PRIMARY
-                        : ColorsDark.BOTTOM_PRIMARY_DISABLE
-                    }>
-                    Portfolio
-                  </Text>
-                ) : (
-                  <Text
-                    size={12}
-                    color={
-                      selected
-                        ? ColorsDark.BOTTOM_PRIMARY
-                        : ColorsDark.BOTTOM_PRIMARY_DISABLE
-                    }>
-                    Portfolio
-                  </Text>
-                )}
+                <Text size={12} color={textisDarkMode(selected)}>
+                  Porfolio
+                </Text>
               </Pressable>
             );
           },
