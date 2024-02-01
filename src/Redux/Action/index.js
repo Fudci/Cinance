@@ -6,6 +6,7 @@ import HomeAction from './HomeAction';
 import NotifAction from './NotifAction';
 import PhoneCountryAction from './PhoneCountry';
 import AssetsCoinAction from './AssetsCoinAction';
+import AssetHistoryAction from './AssetHistoryAction';
 
 function* rootSaga() {
   yield all([
@@ -14,6 +15,7 @@ function* rootSaga() {
     NotifAction(),
     PhoneCountryAction(),
     AssetsCoinAction(),
+    AssetHistoryAction(),
     // Add other sagas here
   ]);
 }

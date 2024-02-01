@@ -2,7 +2,6 @@ import {GET_ASSETS_COIN, GET_HOME_SYNC} from '@services/AssetsCoin';
 import {put, takeLatest} from 'redux-saga/effects';
 
 function* setDataAssets(action) {
-  console.log('masuk');
   try {
     const data = yield GET_ASSETS_COIN();
     if (data) {

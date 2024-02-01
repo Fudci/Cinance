@@ -1,5 +1,5 @@
 import {View, useColorScheme} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './DashboardLoginSingup.styles';
 import Container from '@molecules/Container/Container';
 import Button from '@atom/Button';
@@ -14,6 +14,7 @@ import Text from '@atom/Text';
 const DahsboarLoginSingupOrgamisms = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const navigation = useNavigation();
+
   return (
     <Container style={styles.container}>
       <View style={styles.body}>
@@ -68,7 +69,9 @@ const DahsboarLoginSingupOrgamisms = () => {
             Continue with Google
           </Text>
         </Button> */}
-        <Button style={styles.wrapperRow} onPress={() => console.log('tes')}>
+        <Button
+          style={styles.wrapperRow}
+          onPress={() => navigation.navigate('LoginPages')}>
           <Text>Already have an account?</Text>
           <Text color={ColorsDark.PRIMARY_BUTTON}>Log In</Text>
         </Button>

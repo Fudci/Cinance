@@ -6,9 +6,21 @@ const api = axios.create({
   timeout: 10000, // Define your timeout
 });
 
-export const GET_ASSETS_COIN = async token => {
+export const GET_ASSETS_COIN = async () => {
   try {
     const response = await api.get('/v2/assets');
+    return response.data;
+  } catch (error) {
+    console.log(error.response.data);
+    throw error;
+  }
+};
+
+export const GET_ASSETS_COIN_HISTORY = async (id, interval) => {
+  try {
+    const response = await api.get(
+      `/v2/assets/${id}/history?interval=${interval}`,
+    );
     return response.data;
   } catch (error) {
     console.log(error.response.data);

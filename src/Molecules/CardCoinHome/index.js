@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import React from 'react';
 import styles from './CardCointHome.style';
 import {IconAssets} from '@helpers/IconCoins';
@@ -7,13 +7,17 @@ import {Precentage24} from '@helpers/GetColorIcon';
 import {PriceUsd} from '@helpers/PriceUsd';
 import {ColorsDark} from '@helpers/Color';
 import Text from '@atom/Text';
+import {useNavigation} from '@react-navigation/native';
 
 const CardCoinHome = ({item, index}) => {
+  const navigation = useNavigation();
   const IconURL = IconAssets.filter(el => {
     return el.name === item.symbol;
   });
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={() => navigation.navigate('DetailMarketsPages', {id: item.id})}
+      style={styles.container}>
       <View style={styles.itemLeft}>
         <FastImage
           style={styles.image}
@@ -37,7 +41,7 @@ const CardCoinHome = ({item, index}) => {
         </Text>
         <Text>${PriceUsd(item.priceUsd)}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

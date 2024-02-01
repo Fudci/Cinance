@@ -17,6 +17,7 @@ const HomeOrganisms = () => {
   const MarketCoin = useSelector(state => state.AssetsReducers.Markets);
   const PriceLowCoin = useSelector(state => state.AssetsReducers.PriceLow);
   const PriceHighCoin = useSelector(state => state.AssetsReducers.PriceHigh);
+
   const CallApi = () => {
     dispatch({type: 'SET_ASSET_COIN'});
   };

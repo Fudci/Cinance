@@ -14,14 +14,14 @@ import {
 import {ColorsDark} from '@helpers/Color';
 import {useNavigation} from '@react-navigation/native';
 
-const Header = () => {
+const Header = ({leftIcon = false}) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Pressable onPress={() => navigation.goBack()}>
         <ArrowLeftIcon color={ColorsDark.PRIMARY_DISABLED} />
       </Pressable>
-      <PhoneIcon color={ColorsDark.PRIMARY_DISABLED} />
+      {leftIcon && <PhoneIcon color={ColorsDark.PRIMARY_DISABLED} />}
     </View>
   );
 };

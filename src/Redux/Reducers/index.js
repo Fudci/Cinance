@@ -6,6 +6,7 @@ import HomeReducer from './Home';
 import NotifReducer from './Notif';
 import PhoneCountryReducer from './PhoneCountry';
 import AssetsReducers from './Assets';
+import HistoryAssets from './DetailCoins';
 
 const rootReducer = combineReducers({
   ChatReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   NotifReducer,
   PhoneCountryReducer,
   AssetsReducers,
+  HistoryAssets,
   // Add other reducers here
 });
 

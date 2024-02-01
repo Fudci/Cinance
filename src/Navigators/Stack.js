@@ -16,6 +16,9 @@ import DeviceInfo from 'react-native-device-info';
 import PhoneVerificationPages from '@pages/PhoneVerificationPages';
 import SetUpPasswordPages from '@pages/SetUpPasswordPages';
 import BottomTabs from './BottomNavigators';
+import DetailMarketPages from '@pages/DetailMarketPages';
+import LoginPages from '@pages/LoginPages';
+import PasswordPages from '@pages/PasswordPages';
 
 const Stack = createStackNavigator();
 
@@ -52,7 +55,6 @@ const StackNavigator = () => {
       }}>
       <Stack.Screen name="SplashScreen" component={SplashScreenPages} />
       <Stack.Screen name="BootomTabPages" component={BottomTabs} />
-
       <Stack.Screen name="IntroPages" component={IntroPages} />
       <Stack.Screen name="SignUpPages" component={SingUpPages} />
       <Stack.Screen
@@ -64,6 +66,9 @@ const StackNavigator = () => {
         component={PhoneVerificationPages}
       />
       <Stack.Screen name="SetUpPasswordPages" component={SetUpPasswordPages} />
+      <Stack.Screen name="DetailMarketsPages" component={DetailMarketPages} />
+      <Stack.Screen name="LoginPages" component={LoginPages} />
+      <Stack.Screen name="PasswordPages" component={PasswordPages} />
     </Stack.Navigator>
   );
 };
