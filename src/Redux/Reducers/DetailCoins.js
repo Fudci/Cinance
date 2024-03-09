@@ -4,6 +4,7 @@ const initialState = {
   H6: [],
   H2: [],
   H1: [],
+  isLoading: true,
 };
 
 const DetailCoinReducer = (state = initialState, action) => {
@@ -12,26 +13,31 @@ const DetailCoinReducer = (state = initialState, action) => {
       return {
         ...state,
         D1: action.payload,
+        isLoading: action.loading,
       };
     case 'SET_DATA_ASSETS_COIN_MARKET_HISTORY_H12':
       return {
         ...state,
         H12: action.payload,
+        isLoading: action.loading,
       };
     case 'SET_DATA_ASSETS_COIN_MARKET_HISTORY_H6':
       return {
         ...state,
         H6: action.payload,
+        isLoading: action.loading,
       };
     case 'SET_DATA_ASSETS_COIN_MARKET_HISTORY_H2':
       return {
         ...state,
         H2: action.payload,
+        isLoading: action.loading,
       };
     case 'SET_DATA_ASSETS_COIN_MARKET_HISTORY_H1':
       return {
         ...state,
         H1: action.payload,
+        isLoading: action.loading,
       };
     case 'CLEAR_DATA_ASSETS_COIN_HISTORY':
       return {
@@ -41,6 +47,7 @@ const DetailCoinReducer = (state = initialState, action) => {
         H6: [],
         H2: [],
         H1: [],
+        isLoading: false,
       };
     default:
       return state;

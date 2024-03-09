@@ -8,11 +8,13 @@ import CardCoinHome from '@molecules/CardCoinHome';
 import HeaderHome from '@molecules/HeaderHome';
 import HeaderHighligth from '@molecules/HeaderHighlight';
 import Selection2List from '@molecules/Selection2List';
+import ModalBottom from '@molecules/ModalBottom';
 
 const HomeOrganisms = () => {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState('hot');
   const [selectButton, setSelectButton] = useState(true);
+  const [modalActive, setModalActive] = useState(true);
   const AssetsCoin = useSelector(state => state.AssetsReducers.Assets);
   const MarketCoin = useSelector(state => state.AssetsReducers.Markets);
   const PriceLowCoin = useSelector(state => state.AssetsReducers.PriceLow);
@@ -61,6 +63,7 @@ const HomeOrganisms = () => {
           showsVerticalScrollIndicator={false}
           stickyHeaderIndices={[1]}>
           <HeaderHighligth />
+          {/* <ModalBottom value={modalActive} setValue={setModalActive} /> */}
           <View style={styles.row(isDarkMode)}>
             <Selection2List setValue={setSelectButton} value={selectButton} />
             {selectButton && <SelectionFilterHome setValue={setFilter} />}

@@ -7,11 +7,13 @@ export default StyleSheet.create({
   container: {
     gap: 20,
     // backgroundColor: 'red',
-    padding: pixelSizeHorizontal(16),
   },
   graph: {
     width: windowWidth - pixelSizeHorizontal(20),
     height: 300,
     // backgroundColor: 'red',
+  },
+  body: {
+    padding: pixelSizeHorizontal(16),
   },
 });

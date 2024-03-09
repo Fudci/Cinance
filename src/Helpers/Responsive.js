@@ -30,10 +30,13 @@ const pixelSizeVertical = size => {
 const pixelSizeHorizontal = size => {
   return widthPixel(size);
 };
+
 export {
   widthPixel,
   heightPixel,
   fontPixel,
   pixelSizeVertical,
   pixelSizeHorizontal,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
 };

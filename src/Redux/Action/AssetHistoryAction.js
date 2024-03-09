@@ -3,6 +3,11 @@ import {put, takeLatest} from 'redux-saga/effects';
 
 function* setDataAssetHistory(action) {
   console.log(action, 'laskdfjlksdjfldsj');
+  yield put({
+    type: 'SET_DATA_ASSETS_COIN_HISTORY_D1',
+    payload: [],
+    loading: true,
+  });
   try {
     const data = yield GET_ASSETS_COIN_HISTORY(action.id, action.interval);
     if (data) {
@@ -15,9 +20,12 @@ function* setDataAssetHistory(action) {
         };
       });
 
+      console.log(newData, 'data log');
+
       yield put({
         type: 'SET_DATA_ASSETS_COIN_HISTORY_D1',
         payload: newData,
+        loading: false,
       });
       // yield put({
       //   type: 'SET_DATA_ASSETS_COIN_MARKET_HISTORY_H12',
@@ -41,6 +49,7 @@ function* setDataAssetHistory(action) {
     yield put({
       type: 'CLEAR_DATA_ASSETS_COIN_HISTORY',
       payload: action.payload,
+      loading: false,
     });
   }
 }
