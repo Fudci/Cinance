@@ -1,4 +1,11 @@
-import {FlatList, LogBox, ScrollView, View, useColorScheme} from 'react-native';
+import {
+  FlatList,
+  LogBox,
+  ScrollView,
+  View,
+  useColorScheme,
+  Button,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './DashboardLoginSingup.styles';
 import Container from '@molecules/Container/Container';
@@ -54,6 +61,7 @@ const HomeOrganisms = () => {
   }, []);
 
   const isDarkMode = useColorScheme() === 'dark';
+  // https://home-0wn.sentry.io/issues/?project=4506959143305216
 
   return (
     <Container style={styles.container}>
@@ -68,6 +76,7 @@ const HomeOrganisms = () => {
             <Selection2List setValue={setSelectButton} value={selectButton} />
             {selectButton && <SelectionFilterHome setValue={setFilter} />}
           </View>
+
           {selectButton && (
             <>
               {AssetsCoin.length > 0 && filter === 'hot' && (

@@ -1,4 +1,10 @@
-import {Pressable, ScrollView, View} from 'react-native';
+import {
+  Dimensions,
+  Pressable,
+  ScrollView,
+  View,
+  useColorScheme,
+} from 'react-native';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './DetailMarketOrganisms.styles';
 import Container from '@molecules/Container/Container';
@@ -11,26 +17,39 @@ import Images from '@helpers/Images';
 import {SCREEN_HEIGHT} from '@helpers/Responsive';
 import Header from '@molecules/Header';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {PriceUsd, PriceUsdSingle} from '@helpers/PriceUsd';
+import {Precentage24 as Percentage24} from '@helpers/GetColorIcon';
 const GRADIENT_FILL_COLORS = ['#7476df5D', '#7476df4D', '#7476df00'];
 
 const DetailMarketOrganisms = ({id}) => {
   const dispatch = useDispatch();
-  const [interval, setInterval] = useState('m1');
+  const [interval, setInterval] = useState('h1');
   const width = 256;
   const height = 256;
   const r = width * 0.33;
   const gestureStarted = useRef(false);
 
   const D1 = useSelector(state => state.HistoryAssets.D1);
+  const H1 = useSelector(state => state.HistoryAssets.H1);
+  const H2 = useSelector(state => state.HistoryAssets.H2);
+  const H6 = useSelector(state => state.HistoryAssets.H6);
+  const H12 = useSelector(state => state.HistoryAssets.H12);
+  const Min = useSelector(state => state.HistoryAssets.min);
+  const Max = useSelector(state => state.HistoryAssets.max);
+
+  const DetailCoin = useSelector(state => state.HistoryAssets.detailCoin);
   const isLoading = useSelector(state => state.HistoryAssets.isLoading);
 
-  const CallApi = () => {
-    dispatch({type: 'SET_COIN_HISTORY', id, interval: interval});
-  };
+  const CallApi = () => {};
+
+  // useEffect(() => {
+  //   CallApi();
+  // }, [interval]);
 
   useEffect(() => {
-    CallApi();
-  }, [interval]);
+    dispatch({type: 'SET_COIN_HISTORY', id, interval: interval});
+    dispatch({type: 'SET_COIN_DETAIL', id});
+  }, []);
 
   const [Price, setPrice] = useState();
 
@@ -53,12 +72,46 @@ const DetailMarketOrganisms = ({id}) => {
     console.log(p);
   }, []);
 
+  const AxisLabel = ({value, index, arrayLength}) => {
+    console.log(arrayLength);
+    const textColor = useColorScheme() === 'dark' ? '#fff' : '#000';
+    const location =
+      (index / arrayLength) * (Dimensions.get('window').width - 40) || 0;
+    console.log(Math.round(location), 'ddd');
+    return (
+      <View style={{transform: [{translateX: index}]}}>
+        <Text>{value}</Text>
+      </View>
+    );
+  };
+
+  const color = DetailCoin?.changePercent24Hr?.includes('-')
+    ? '#FF0000'
+    : '#2EBC84';
+
+  function formatNumber(inputStr) {
+    try {
+      const number = parseFloat(inputStr);
+      if (!isNaN(number)) {
+        const formattedNumber = number.toFixed(2);
+        return formattedNumber;
+      } else {
+        return 'Invalid input, please provide a valid number.';
+      }
+    } catch (error) {
+      return 'An error occurred while formatting the number.';
+    }
+  }
+
   return (
     <Container style={styles.container}>
       <Header />
       <View style={styles.body}>
         <Text>{id}</Text>
-        <Text>{Price}</Text>
+        <Text>
+          ${Price ? formatNumber(Price) : formatNumber(DetailCoin.priceUsd)}
+        </Text>
+        <Text> {DetailCoin?.changePercent24Hr?.slice(0, 4)}</Text>
 
         {isLoading && (
           <FastImage
@@ -74,47 +127,154 @@ const DetailMarketOrganisms = ({id}) => {
             }}
           />
         )}
-        <GestureHandlerRootView style={{flex: 1}}>
-          <LineGraph
-            gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
-            // panGestureDelay={0}
-            TopAxisLabel={() => <Text>dddd</Text>}
-            BottomAxisLabel={() => <Text>dddd</Text>}
-            animated={true}
-            style={styles.graph}
-            points={D1}
-            color="#2EBC84"
-            enablePanGesture={true}
-            onGestureStart={onGestureStart}
-            onPointSelected={onPointSelected}
-            onGestureEnd={onGestureEnd}
-          />
+        <GestureHandlerRootView style={{marginVertical: 20}}>
+          <View>
+            {interval == 'd1' && (
+              <LineGraph
+                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
+                animated={true}
+                style={styles.graph}
+                points={D1}
+                color={color}
+                enablePanGesture={true}
+                onGestureStart={onGestureStart}
+                onPointSelected={onPointSelected}
+                onGestureEnd={onGestureEnd}
+              />
+            )}
+            {interval == 'h1' && (
+              <LineGraph
+                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
+                // panGestureDelay={0}
+
+                animated={true}
+                style={styles.graph}
+                points={H1}
+                color={color}
+                enablePanGesture={true}
+                onGestureStart={onGestureStart}
+                onPointSelected={onPointSelected}
+                onGestureEnd={onGestureEnd}
+              />
+            )}
+            {interval == 'h2' && (
+              <LineGraph
+                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
+                // panGestureDelay={0}
+
+                animated={true}
+                style={styles.graph}
+                points={H2}
+                color={color}
+                enablePanGesture={true}
+                onGestureStart={onGestureStart}
+                onPointSelected={onPointSelected}
+                onGestureEnd={onGestureEnd}
+              />
+            )}
+            {interval == 'h6' && (
+              <LineGraph
+                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
+                // panGestureDelay={0}
+
+                animated={true}
+                style={styles.graph}
+                points={H6}
+                color={color}
+                enablePanGesture={true}
+                onGestureStart={onGestureStart}
+                onPointSelected={onPointSelected}
+                onGestureEnd={onGestureEnd}
+              />
+            )}
+            {interval == 'h12' && (
+              <LineGraph
+                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
+                // panGestureDelay={0}
+
+                animated={true}
+                style={styles.graph}
+                points={H12}
+                color={color}
+                enablePanGesture={true}
+                onGestureStart={onGestureStart}
+                onPointSelected={onPointSelected}
+                onGestureEnd={onGestureEnd}
+              />
+            )}
+          </View>
         </GestureHandlerRootView>
 
         <ScrollView
           horizontal
           contentContainerStyle={{
             justifyContent: 'space-between',
-            // flexDirection: 'row',
             // backgroundColor: 'red',
             flex: 1,
+            marginVertical: 4,
+            gap: 30,
           }}>
-          <Pressable onPress={() => setInterval('d1')} style={{flex: 1}}>
-            <Text>D1</Text>
+          <Pressable
+            onPress={() => setInterval('h1')}
+            style={{
+              flex: 1,
+              backgroundColor: interval == 'h1' ? 'white' : null,
+              alignItems: 'center',
+              borderRadius: 8,
+              // paddingVertical: 2,
+            }}>
+            <Text color={interval == 'h1' ? 'black' : 'white'}>H1</Text>
           </Pressable>
-          <Pressable onPress={() => setInterval('h12')} style={{flex: 1}}>
-            <Text>H12</Text>
+          <Pressable
+            onPress={() => setInterval('h2')}
+            style={{
+              flex: 1,
+              backgroundColor: interval == 'h2' ? 'white' : null,
+              alignItems: 'center',
+              borderRadius: 8,
+            }}>
+            <Text color={interval == 'h2' ? 'black' : 'white'}>H2</Text>
           </Pressable>
-          <Pressable onPress={() => setInterval('h6')} style={{flex: 1}}>
-            <Text>H6</Text>
+          <Pressable
+            onPress={() => setInterval('h6')}
+            style={{
+              flex: 1,
+              backgroundColor: interval == 'h6' ? 'white' : null,
+              alignItems: 'center',
+              borderRadius: 8,
+            }}>
+            <Text color={interval == 'h6' ? 'black' : 'white'}>H6</Text>
           </Pressable>
-          <Pressable onPress={() => setInterval('h2')} style={{flex: 1}}>
-            <Text>H2</Text>
+          <Pressable
+            onPress={() => setInterval('h12')}
+            style={{
+              flex: 1,
+              backgroundColor: interval == 'h12' ? 'white' : null,
+              alignItems: 'center',
+              borderRadius: 8,
+            }}>
+            <Text color={interval == 'h12' ? 'black' : 'white'}>H12</Text>
           </Pressable>
-          <Pressable onPress={() => setInterval('h1')}>
-            <Text>H1</Text>
+          <Pressable
+            onPress={() => setInterval('d1')}
+            style={{
+              flex: 1,
+              backgroundColor: interval == 'd1' ? 'white' : null,
+              alignItems: 'center',
+              borderRadius: 8,
+            }}>
+            <Text color={interval == 'd1' ? 'black' : 'white'}>D1</Text>
           </Pressable>
         </ScrollView>
+
+        <Text>About</Text>
+        {Object.entries(DetailCoin).map(([key, v]) => {
+          return (
+            <View key={key}>
+              <Text>{v}</Text>
+            </View>
+          );
+        })}
       </View>
     </Container>
   );

@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import {FadeFromBottomAndroid} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/TransitionPresets';
 import {storage} from '@helpers/Storage';
+import * as Sentry from '@sentry/react-native';
 
 const Function = Email => {
   console.log(Email, 'function hook');
@@ -22,6 +23,12 @@ const Function = Email => {
           navigation.replace('BootomTabPages');
         } else {
           setErrorPassword(true);
+          const error = {
+            error: el,
+            Email: Email.email,
+            password : password,
+          };
+          Sentry.captureMessage(error);
           console.log(' user di temukan dan pass sama');
         }
       });
