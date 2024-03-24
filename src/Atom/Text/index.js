@@ -13,6 +13,7 @@ const Text = ({
   active = false,
   valueActive,
   nameValue,
+  numberOfLines,
 }) => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -34,6 +35,8 @@ const Text = ({
   if (active) {
     return (
       <TextRN
+        numberOfLines={numberOfLines}
+        ellipsizeMode="tail"
         style={{
           lineHeight: lineHeight,
           fontSize: size ? size : 14,
@@ -48,6 +51,7 @@ const Text = ({
 
   return (
     <TextRN
+      numberOfLines={numberOfLines}
       style={{
         lineHeight: lineHeight,
         fontSize: size ? size : 14,

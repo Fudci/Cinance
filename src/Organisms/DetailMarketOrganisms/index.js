@@ -19,6 +19,8 @@ import Header from '@molecules/Header';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {PriceUsd, PriceUsdSingle} from '@helpers/PriceUsd';
 import {Precentage24 as Percentage24} from '@helpers/GetColorIcon';
+import {Capitalize} from '@helpers/Capitalize';
+import {ColorsDark} from '@helpers/Color';
 const GRADIENT_FILL_COLORS = ['#7476df5D', '#7476df4D', '#7476df00'];
 
 const DetailMarketOrganisms = ({id}) => {
@@ -106,176 +108,181 @@ const DetailMarketOrganisms = ({id}) => {
   return (
     <Container style={styles.container}>
       <Header />
-      <View style={styles.body}>
-        <Text>{id}</Text>
-        <Text>
-          ${Price ? formatNumber(Price) : formatNumber(DetailCoin.priceUsd)}
-        </Text>
-        <Text> {DetailCoin?.changePercent24Hr?.slice(0, 4)}</Text>
-
-        {isLoading && (
-          <FastImage
-            resizeMode="contain"
-            source={Images.LOADER}
-            style={{
-              width: 40,
-              height: 40,
-              position: 'absolute',
-              top: SCREEN_HEIGHT * 0.2,
-              zIndex: 9,
-              alignSelf: 'center',
-            }}
-          />
-        )}
-        <GestureHandlerRootView style={{marginVertical: 20}}>
-          <View>
-            {interval == 'd1' && (
-              <LineGraph
-                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
-                animated={true}
-                style={styles.graph}
-                points={D1}
-                color={color}
-                enablePanGesture={true}
-                onGestureStart={onGestureStart}
-                onPointSelected={onPointSelected}
-                onGestureEnd={onGestureEnd}
-              />
-            )}
-            {interval == 'h1' && (
-              <LineGraph
-                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
-                // panGestureDelay={0}
-
-                animated={true}
-                style={styles.graph}
-                points={H1}
-                color={color}
-                enablePanGesture={true}
-                onGestureStart={onGestureStart}
-                onPointSelected={onPointSelected}
-                onGestureEnd={onGestureEnd}
-              />
-            )}
-            {interval == 'h2' && (
-              <LineGraph
-                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
-                // panGestureDelay={0}
-
-                animated={true}
-                style={styles.graph}
-                points={H2}
-                color={color}
-                enablePanGesture={true}
-                onGestureStart={onGestureStart}
-                onPointSelected={onPointSelected}
-                onGestureEnd={onGestureEnd}
-              />
-            )}
-            {interval == 'h6' && (
-              <LineGraph
-                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
-                // panGestureDelay={0}
-
-                animated={true}
-                style={styles.graph}
-                points={H6}
-                color={color}
-                enablePanGesture={true}
-                onGestureStart={onGestureStart}
-                onPointSelected={onPointSelected}
-                onGestureEnd={onGestureEnd}
-              />
-            )}
-            {interval == 'h12' && (
-              <LineGraph
-                // gradientFillColors={true ? GRADIENT_FILL_COLORS : undefined}
-                // panGestureDelay={0}
-
-                animated={true}
-                style={styles.graph}
-                points={H12}
-                color={color}
-                enablePanGesture={true}
-                onGestureStart={onGestureStart}
-                onPointSelected={onPointSelected}
-                onGestureEnd={onGestureEnd}
-              />
-            )}
+      <ScrollView>
+        <View style={styles.body}>
+          <View style={{flexDirection: 'row'}}>
+            <Text
+              size={16}
+              fontFamily={'bold'}
+              style={{textTransform: 'uppercase'}}>
+              {Capitalize(id)}
+            </Text>
+            <Text> {DetailCoin?.symbol}</Text>
           </View>
-        </GestureHandlerRootView>
+          <Text size={24} fontFamily={'bold'}>
+            ${Price ? formatNumber(Price) : formatNumber(DetailCoin.priceUsd)}
+          </Text>
+          {/* <Text> {DetailCoin?.changePercent24Hr?.slice(0, 4)}</Text> */}
 
-        <ScrollView
-          horizontal
-          contentContainerStyle={{
-            justifyContent: 'space-between',
-            // backgroundColor: 'red',
-            flex: 1,
-            marginVertical: 4,
-            gap: 30,
-          }}>
-          <Pressable
-            onPress={() => setInterval('h1')}
-            style={{
-              flex: 1,
-              backgroundColor: interval == 'h1' ? 'white' : null,
-              alignItems: 'center',
-              borderRadius: 8,
-              // paddingVertical: 2,
-            }}>
-            <Text color={interval == 'h1' ? 'black' : 'white'}>H1</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => setInterval('h2')}
-            style={{
-              flex: 1,
-              backgroundColor: interval == 'h2' ? 'white' : null,
-              alignItems: 'center',
-              borderRadius: 8,
-            }}>
-            <Text color={interval == 'h2' ? 'black' : 'white'}>H2</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => setInterval('h6')}
-            style={{
-              flex: 1,
-              backgroundColor: interval == 'h6' ? 'white' : null,
-              alignItems: 'center',
-              borderRadius: 8,
-            }}>
-            <Text color={interval == 'h6' ? 'black' : 'white'}>H6</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => setInterval('h12')}
-            style={{
-              flex: 1,
-              backgroundColor: interval == 'h12' ? 'white' : null,
-              alignItems: 'center',
-              borderRadius: 8,
-            }}>
-            <Text color={interval == 'h12' ? 'black' : 'white'}>H12</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => setInterval('d1')}
-            style={{
-              flex: 1,
-              backgroundColor: interval == 'd1' ? 'white' : null,
-              alignItems: 'center',
-              borderRadius: 8,
-            }}>
-            <Text color={interval == 'd1' ? 'black' : 'white'}>D1</Text>
-          </Pressable>
-        </ScrollView>
-
-        <Text>About</Text>
-        {Object.entries(DetailCoin).map(([key, v]) => {
-          return (
-            <View key={key}>
-              <Text>{v}</Text>
+          {isLoading && (
+            <FastImage
+              resizeMode="contain"
+              source={Images.LOADER}
+              style={{
+                width: 40,
+                height: 40,
+                position: 'absolute',
+                top: SCREEN_HEIGHT * 0.2,
+                zIndex: 9,
+                alignSelf: 'center',
+              }}
+            />
+          )}
+          <GestureHandlerRootView style={{marginVertical: 20}}>
+            <View>
+              {interval == 'd1' && (
+                <LineGraph
+                  animated={true}
+                  style={styles.graph}
+                  points={D1}
+                  color={color}
+                  enablePanGesture={true}
+                  onGestureStart={onGestureStart}
+                  onPointSelected={onPointSelected}
+                  onGestureEnd={onGestureEnd}
+                />
+              )}
+              {interval == 'h1' && (
+                <LineGraph
+                  animated={true}
+                  style={styles.graph}
+                  points={H1}
+                  color={color}
+                  enablePanGesture={true}
+                  onGestureStart={onGestureStart}
+                  onPointSelected={onPointSelected}
+                  onGestureEnd={onGestureEnd}
+                />
+              )}
+              {interval == 'h2' && (
+                <LineGraph
+                  animated={true}
+                  style={styles.graph}
+                  points={H2}
+                  color={color}
+                  enablePanGesture={true}
+                  onGestureStart={onGestureStart}
+                  onPointSelected={onPointSelected}
+                  onGestureEnd={onGestureEnd}
+                />
+              )}
+              {interval == 'h6' && (
+                <LineGraph
+                  animated={true}
+                  style={styles.graph}
+                  points={H6}
+                  color={color}
+                  enablePanGesture={true}
+                  onGestureStart={onGestureStart}
+                  onPointSelected={onPointSelected}
+                  onGestureEnd={onGestureEnd}
+                />
+              )}
+              {interval == 'h12' && (
+                <LineGraph
+                  animated={true}
+                  style={styles.graph}
+                  points={H12}
+                  color={color}
+                  enablePanGesture={true}
+                  onGestureStart={onGestureStart}
+                  onPointSelected={onPointSelected}
+                  onGestureEnd={onGestureEnd}
+                />
+              )}
             </View>
-          );
-        })}
-      </View>
+          </GestureHandlerRootView>
+
+          <ScrollView
+            horizontal
+            contentContainerStyle={{
+              justifyContent: 'space-between',
+              flex: 1,
+              marginVertical: 4,
+              gap: 30,
+              marginBottom: 10,
+            }}>
+            <Pressable
+              onPress={() => setInterval('h1')}
+              style={{
+                flex: 1,
+                backgroundColor: interval == 'h1' ? 'white' : null,
+                alignItems: 'center',
+                borderRadius: 8,
+                // paddingVertical: 2,
+              }}>
+              <Text color={interval == 'h1' ? 'black' : 'white'}>H1</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => setInterval('h2')}
+              style={{
+                flex: 1,
+                backgroundColor: interval == 'h2' ? 'white' : null,
+                alignItems: 'center',
+                borderRadius: 8,
+              }}>
+              <Text color={interval == 'h2' ? 'black' : 'white'}>H2</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => setInterval('h6')}
+              style={{
+                flex: 1,
+                backgroundColor: interval == 'h6' ? 'white' : null,
+                alignItems: 'center',
+                borderRadius: 8,
+              }}>
+              <Text color={interval == 'h6' ? 'black' : 'white'}>H6</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => setInterval('h12')}
+              style={{
+                flex: 1,
+                backgroundColor: interval == 'h12' ? 'white' : null,
+                alignItems: 'center',
+                borderRadius: 8,
+              }}>
+              <Text color={interval == 'h12' ? 'black' : 'white'}>H12</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => setInterval('d1')}
+              style={{
+                flex: 1,
+                backgroundColor: interval == 'd1' ? 'white' : null,
+                alignItems: 'center',
+                borderRadius: 8,
+              }}>
+              <Text color={interval == 'd1' ? 'black' : 'white'}>D1</Text>
+            </Pressable>
+          </ScrollView>
+
+          <Text size={16}>About {Capitalize(id)}</Text>
+          {Object.entries(DetailCoin).map(([key, v]) => {
+            console.log(key);
+            return (
+              <View
+                key={key}
+                style={{
+                  justifyContent: 'space-between',
+                  flexDirection: 'row',
+                  paddingVertical: 10,
+                }}>
+                <Text color={ColorsDark.TEXT_INACTIVE}>{Capitalize(key)}</Text>
+                <Text>{v}</Text>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
     </Container>
   );
 };

@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
   graph: {
     width: windowWidth - pixelSizeHorizontal(20),
-    height: 300,
+    height: 600,
     // backgroundColor: 'red',
   },
   body: {

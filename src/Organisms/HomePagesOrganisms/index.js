@@ -15,7 +15,6 @@ import CardCoinHome from '@molecules/CardCoinHome';
 import HeaderHome from '@molecules/HeaderHome';
 import HeaderHighligth from '@molecules/HeaderHighlight';
 import Selection2List from '@molecules/Selection2List';
-import ModalBottom from '@molecules/ModalBottom';
 
 const HomeOrganisms = () => {
   const dispatch = useDispatch();
@@ -46,22 +45,26 @@ const HomeOrganisms = () => {
 
   const CoinList = ({data, renderItem}) => (
     <FlatList
-      maxToRenderPerBatch={10}
-      initialNumToRender={10}
+      maxToRenderPerBatch={20}
+      initialNumToRender={20}
       windowSize={10}
       contentContainerStyle={{paddingBottom: 180}}
       stickyHeaderIndices={[0]}
       data={data}
       renderItem={renderItem}
+      getItemLayout={(data, index) => ({
+        length: 100,
+        offset: 100 * index,
+        index,
+      })}
     />
   );
 
   useEffect(() => {
-    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.']);
   }, []);
 
   const isDarkMode = useColorScheme() === 'dark';
-  // https://home-0wn.sentry.io/issues/?project=4506959143305216
 
   return (
     <Container style={styles.container}>
