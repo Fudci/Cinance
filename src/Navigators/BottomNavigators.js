@@ -18,6 +18,7 @@ import {
   WalletIcon,
   ArrowsRightLeftIcon,
   XMarkIcon,
+  CursorArrowRaysIcon,
 } from 'react-native-heroicons/solid';
 import styles from './BottomNavigators.styles';
 import {useEffect, useRef, useState} from 'react';
@@ -43,13 +44,13 @@ const BottomTabs = () => {
     }
   };
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial
-  const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+  const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 
   useEffect(() => {
     if (isOpen) {
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 300,
+        duration: 100,
         useNativeDriver: true,
       }).start(e => {
         Animated.timing(fadeAnim, {
@@ -60,10 +61,16 @@ const BottomTabs = () => {
       });
     } else {
       Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 300,
+        toValue: 1,
+        duration: 100,
         useNativeDriver: true,
-      }).start();
+      }).start(e =>
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start(),
+      );
     }
   }, [isOpen]);
 
@@ -238,18 +245,18 @@ const BottomTabs = () => {
         }}
         style={{
           borderRadius: 12,
-          bottom: 0,
+          bottom: -10,
           marginBottom: 30,
-          width: 50,
-          height: 50,
+          width: 45,
+          height: 45,
           zIndex: 999,
           alignSelf: 'center',
           backgroundColor: ColorsDark.PRIMARY_BUTTON,
           transform: [
             {
               rotate: fadeAnim.interpolate({
-                inputRange: [0, 1],
-                outputRange: ['45deg', '0deg'],
+                inputRange: [0, 1, 2],
+                outputRange: ['45deg', '20deg', '0deg'],
               }),
             },
             {
@@ -268,45 +275,65 @@ const BottomTabs = () => {
             transform: [
               {
                 rotate: fadeAnim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ['-45deg', '0deg'],
+                  inputRange: [0, 1, 2],
+                  outputRange: ['-45deg', '-25deg', '0deg'],
                 }),
               },
             ],
           }}>
           {!isOpen ? (
-            <ArrowsRightLeftIcon color={'black'} />
+            <ArrowsRightLeftIcon
+              stroke={'black'}
+              strokeWidth={0.5}
+              color={'black'}
+            />
           ) : (
-            <XMarkIcon color={'black'} />
+            <XMarkIcon stroke={'black'} color={'black'} />
           )}
         </Animated.View>
       </AnimatedTouchable>
       <Animated.View
         style={{
           backgroundColor: ColorsDark.PRIMARY_MAIN,
-          height: 150,
+          height: 170,
           width: '100%',
           position: 'absolute',
+          // flexDirection: 'row',
           bottom: 0,
           zIndex: 1,
           paddingVertical: 20,
           borderTopStartRadius: 20,
           borderTopEndRadius: 20,
+          paddingHorizontal: 20,
+          paddingTop: 30,
+          gap: 20,
           transform: [
             {
               translateY: fadeAnim.interpolate({
-                inputRange: [0, 1,2],
-                outputRange: [150, 100,0],
+                inputRange: [0, 1, 2],
+                outputRange: [170, 100, 0],
               }),
             },
           ],
         }}>
-        <Text>Buy</Text>
-        <Text>Buy crypto with INR</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
+          <CursorArrowRaysIcon
+            size={30}
+            color={'white'}
+            // strokeWidth={1.2}
+            // stroke={'grey'}
+          />
+          <View style={{gap: 5}}>
+            <Text size={16} fontFamily={'bold'}>
+              Buy
+            </Text>
+            <Text color={ColorsDark.TEXT_INACTIVE}>Buy crypto with INR</Text>
+          </View>
+        </View>
       </Animated.View>
       <Animated.View
         style={{
-          backgroundColor: 'rgba(52, 52, 52, 0.6)',
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
           position: 'absolute',
           top: 0,
           height: '100%',
