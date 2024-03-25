@@ -1,5 +1,4 @@
 export const PriceUsd = price => {
-  // console.log(price, 'price');
   if (price.includes('.0')) {
     const frontPrice = price.split('.0')[0];
     const backPrice = price.split('.0')[1];
@@ -12,8 +11,6 @@ export const PriceUsd = price => {
 };
 
 export const PriceUsdSingle = price => {
-  console.log(typeof price);
-  // return price;
   if (price.includes('.0')) {
     const frontPrice = price.split('.0')[0];
     const backPrice = price.split('.0')[1];

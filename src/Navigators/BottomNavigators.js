@@ -50,7 +50,7 @@ const BottomTabs = () => {
     if (isOpen) {
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 100,
+        duration: 50,
         useNativeDriver: true,
       }).start(e => {
         Animated.timing(fadeAnim, {
@@ -62,7 +62,7 @@ const BottomTabs = () => {
     } else {
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 100,
+        duration: 50,
         useNativeDriver: true,
       }).start(e =>
         Animated.timing(fadeAnim, {
@@ -247,8 +247,8 @@ const BottomTabs = () => {
           borderRadius: 12,
           bottom: -10,
           marginBottom: 30,
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           zIndex: 999,
           alignSelf: 'center',
           backgroundColor: ColorsDark.PRIMARY_BUTTON,

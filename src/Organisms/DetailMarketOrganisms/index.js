@@ -71,15 +71,12 @@ const DetailMarketOrganisms = ({id}) => {
 
     // setPriceTitle(p);
     setPrice(p.value);
-    console.log(p);
   }, []);
 
   const AxisLabel = ({value, index, arrayLength}) => {
-    console.log(arrayLength);
     const textColor = useColorScheme() === 'dark' ? '#fff' : '#000';
     const location =
       (index / arrayLength) * (Dimensions.get('window').width - 40) || 0;
-    console.log(Math.round(location), 'ddd');
     return (
       <View style={{transform: [{translateX: index}]}}>
         <Text>{value}</Text>
@@ -267,7 +264,6 @@ const DetailMarketOrganisms = ({id}) => {
 
           <Text size={16}>About {Capitalize(id)}</Text>
           {Object.entries(DetailCoin).map(([key, v]) => {
-            console.log(key);
             return (
               <View
                 key={key}

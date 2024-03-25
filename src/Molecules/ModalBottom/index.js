@@ -15,17 +15,7 @@ import Animated, {
 import styles from './ModalBottom.styles';
 import Text from '@atom/Text';
 const ModalBottom = ({setValue, value}) => {
-  //   const unlockGesture = useAnimatedGestureHandler({
-  //     onStart: () => {
-  //       console.log('On Start');
-  //     },
-  //     onActive: () => {
-  //       console.log('On Active');
-  //     },
-  //     onEnd: () => {
-  //       console.log('On End');
-  //     },
-  //   });
+  
 
   const closeModal = () => {
     setValue(false);
@@ -35,11 +25,9 @@ const ModalBottom = ({setValue, value}) => {
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (_, ctx) => {
       ctx.startY = translateY.value;
-      console.log(ctx, 'ddd');
     },
     onActive: (event, ctx) => {
       translateY.value = ctx.startY + event.translationY;
-      console.log(translateY.value, 'lll');
     },
     onEnd: _ => {
       //   if (translateY.value > 100) {

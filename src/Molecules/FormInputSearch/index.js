@@ -26,7 +26,6 @@ const FormInputSearch = ({formName, valueForm, setValueForm}) => {
         />
         <Pressable
           onPress={() => {
-            console.log('tes');
             setSearchText('');
           }}
           style={styles.MarkIcon}>

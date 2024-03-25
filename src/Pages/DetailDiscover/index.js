@@ -1,8 +1,8 @@
 import React from 'react';
 import CoinMarketsOrganisms from '@organisms/CoinMarketsOrganisms';
 
-const DetailDiscoverPages = () => {
+const CoinMarketsPages = () => {
   return <CoinMarketsOrganisms />;
 };
 
-export default DetailDiscoverPages;
+export default CoinMarketsPages;

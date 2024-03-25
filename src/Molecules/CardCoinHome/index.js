@@ -1,4 +1,4 @@
-import {Pressable, View} from 'react-native';
+import {Pressable, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import styles from './CardCointHome.style';
 import {IconAssets} from '@helpers/IconCoins';
@@ -15,7 +15,7 @@ const CardCoinHome = ({item, index}) => {
     return el.name === item.symbol;
   });
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={() => navigation.navigate('DetailMarketsPages', {id: item.id})}
       style={styles.container}>
       <View style={styles.itemLeft}>
@@ -41,7 +41,7 @@ const CardCoinHome = ({item, index}) => {
         </Text>
         <Text>${PriceUsd(item.priceUsd)}</Text>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

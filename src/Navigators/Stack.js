@@ -32,7 +32,6 @@ const StackNavigator = () => {
     if (DeviceInfo.getVersion() < FirebaseVersion) {
       Alert.alert('Update APP Please');
     }
-    console.log(users.docs[0]._data.version, 'version firebase');
     console.log(version);
     console.log(DeviceInfo.getVersion(), 'version app');
   };

@@ -8,6 +8,9 @@ import {FlatList} from 'react-native-gesture-handler';
 import FastImage from 'react-native-fast-image';
 import Text from '@atom/Text';
 import {EllipsisVerticalIcon} from 'react-native-heroicons/solid';
+import RemixIcon from 'react-native-remix-icon';
+import {FlashList} from '@shopify/flash-list';
+import CardDiscover from '@molecules/CardDiscover';
 
 function FeedScreen() {
   const [discoverData, setDiscoverData] = React.useState([]);
@@ -17,11 +20,11 @@ function FeedScreen() {
       .get()
       .then(querySnapshot => {
         setDiscoverData(querySnapshot._docs);
-        console.log('Total users: ', querySnapshot._docs.length);
+        // console.log('Total users: ', querySnapshot._docs.length);
 
-        querySnapshot.forEach(documentSnapshot => {
-          console.log('User ID: ', documentSnapshot._data);
-        });
+        // querySnapshot.forEach(documentSnapshot => {
+        // console.log('User ID: ', documentSnapshot._data);
+        // });
       });
   };
 
@@ -48,65 +51,7 @@ function FeedScreen() {
   }, []);
 
   const renderItem = ({item, index}) => {
-    console.log(item?._data?.profile, 'this item');
-    return (
-      <View
-        style={{
-          // backgroundColor: 'red',
-          // height: 100,
-          // backgroundColor: 'red',
-          width: '100%',
-          gap: 10,
-          paddingVertical: 10,
-          paddingHorizontal: 16,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              gap: 10,
-            }}>
-            <FastImage
-              source={{uri: item?._data?.profile}}
-              style={{width: 50, height: 50, borderRadius: 50}}
-            />
-            <View>
-              <Text numberOfLines={1}>{item?._data?.name}</Text>
-            </View>
-          </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <View
-              style={{
-                paddingHorizontal: 10,
-                backgroundColor: ColorsDark.PRIMARY_BUTTON,
-                borderRadius: 100,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text numberOfLines={1} color={'black'}>
-                Follow
-              </Text>
-            </View>
-            <EllipsisVerticalIcon color={ColorsDark.TEXT_INACTIVE} />
-          </View>
-        </View>
-        <View>
-          <Text size={16} lineHeight={24} numberOfLines={4}>
-            {item?._data?.description}
-          </Text>
-        </View>
-        <FastImage
-          source={{uri: item?._data?.attachements}}
-          style={{width: '100%', height: 200}}
-        />
-      </View>
-    );
+    return <CardDiscover item={item} index={index} />;
   };
 
   return (
@@ -114,20 +59,18 @@ function FeedScreen() {
       style={{
         flex: 1,
         justifyContent: 'center',
-        // alignItems: 'center',
         backgroundColor: ColorsDark.PRIMARY_MAIN,
-        // paddingHorizontal: 16,
       }}>
       <FlatList
         contentContainerStyle={{paddingBottom: 50}}
-        initialNumToRender={10}
-        windowSize={5}
-        getItemLayout={(data, index) => ({
-          length: 100,
-          offset: 100 * index,
-          index,
-        })}
-        // style={{marginTop: 20}}
+        initialNumToRender={20}
+        windowSize={10}
+        maxToRenderPerBatch={5}
+        // getItemLayout={(data, index) => ({
+        //   length: 412,
+        //   offset: 412 * index,
+        //   index,
+        // })}
         data={discoverData}
         renderItem={renderItem}
         ItemSeparatorComponent={() => (
