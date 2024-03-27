@@ -1,11 +1,15 @@
-import {View, Image} from 'react-native';
-import React, {useMemo, useState} from 'react';
+import {View, Image, Pressable} from 'react-native';
+import React, {memo, useMemo, useState} from 'react';
 import styles from './CardDiscover.styles';
 import FastImage from 'react-native-fast-image';
 import {ColorsDark} from '@helpers/Color';
 import {EllipsisVerticalIcon} from 'react-native-heroicons/solid';
 import RemixIcon from 'react-native-remix-icon';
 import Text from '@atom/Text';
+import {useNavigation} from '@react-navigation/native';
+import Animated from 'react-native-reanimated';
+import HeaderDiscover from '@molecules/HeaderDiscover';
+
 const CardDiscover = ({item, index}) => {
   const [heightImage, setheightImage] = useState(0);
 
@@ -14,6 +18,8 @@ const CardDiscover = ({item, index}) => {
       setheightImage({width, height});
     });
   }, [item]);
+
+  const navigation = useNavigation();
 
   return (
     <View
@@ -26,44 +32,7 @@ const CardDiscover = ({item, index}) => {
         paddingVertical: 10,
         paddingHorizontal: 16,
       }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            gap: 10,
-            alignItems: 'center',
-          }}>
-          <FastImage
-            source={{uri: item?._data?.profile}}
-            style={{width: 50, height: 50, borderRadius: 50}}
-          />
-          <View>
-            <Text numberOfLines={1}>{item?._data?.name}</Text>
-            {/* <Text numberOfLines={1}>{item?._data?.name}</Text> */}
-          </View>
-        </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <View
-            style={{
-              paddingHorizontal: 10,
-              backgroundColor: ColorsDark.PRIMARY_BUTTON,
-              borderRadius: 100,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text numberOfLines={1} color={'black'}>
-              Follow
-            </Text>
-          </View>
-          <EllipsisVerticalIcon color={ColorsDark.TEXT_INACTIVE} />
-        </View>
-      </View>
+      <HeaderDiscover item={item?._data} />
       <View>
         <Text size={16} lineHeight={24} numberOfLines={4}>
           {item?._data?.description}
@@ -176,13 +145,18 @@ const CardDiscover = ({item, index}) => {
           // alignSelf:'flex-start'
         }}>
         <View style={{flex: 1, gap: 5}}>
-          <View style={{flex: 1}}>
-            <FastImage
-              // resizeMode="cover"
+          <Pressable
+            onPress={() =>
+              navigation.navigate('DetailDiscover', {
+                image: item?._data,
+              })
+            }
+            style={{flex: 1}}>
+            <Image
               source={{uri: item?._data?.attachements}}
               style={{flex: 1, height: heightImage.height}}
             />
-          </View>
+          </Pressable>
         </View>
       </View>
 
@@ -250,4 +224,4 @@ const CardDiscover = ({item, index}) => {
   );
 };
 
-export default CardDiscover;
+export default memo(CardDiscover);

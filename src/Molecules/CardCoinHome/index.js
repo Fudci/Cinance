@@ -1,5 +1,5 @@
 import {Pressable, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {memo, useMemo} from 'react';
 import styles from './CardCointHome.style';
 import {IconAssets} from '@helpers/IconCoins';
 import FastImage from 'react-native-fast-image';
@@ -45,4 +45,4 @@ const CardCoinHome = ({item, index}) => {
   );
 };
 
-export default CardCoinHome;
+export default memo(CardCoinHome);

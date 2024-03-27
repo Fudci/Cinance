@@ -5,6 +5,7 @@ const windowHeight = Dimensions.get('screen').height;
 
 export default StyleSheet.create({
   container: isDarkMode => ({
+    // flex: 1,
     width: windowWidth,
     height: windowHeight,
     paddingTop: StatusBar.currentHeight,

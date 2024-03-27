@@ -5,13 +5,11 @@ import {StyleSheet, StatusBar, Dimensions} from 'react-native';
 export default StyleSheet.create({
   container: {
     // flex: 1,
-    // height: 2000,
     padding: pixelSizeHorizontal(16),
     // gap: 20,
   },
   body: {
-    gap: 15,
-    marginTop: 20,
+    gap: pixelSizeVertical(20),
   },
   buttonClose: {
     marginTop: 30,

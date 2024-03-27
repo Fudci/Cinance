@@ -12,4 +12,16 @@ export default StyleSheet.create({
     width: windowWidth,
     marginTop: 10,
   },
+  containerDiscover: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
 });

@@ -1,8 +1,8 @@
 import React from 'react';
-import CoinMarketsOrganisms from '@organisms/CoinMarketsOrganisms';
+import DiscoverDetailOrganisms from '@organisms/DiscoverDetailOrganisms';
 
-const DetailDiscoverPages = () => {
-  return <CoinMarketsOrganisms />;
+const DetailDiscoverPages = props => {
+  return <DiscoverDetailOrganisms route={props?.route?.params} />;
 };
 
 export default DetailDiscoverPages;

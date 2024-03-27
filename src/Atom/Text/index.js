@@ -53,7 +53,7 @@ const Text = ({
     <TextRN
       numberOfLines={numberOfLines}
       style={{
-        lineHeight: lineHeight,
+        // lineHeight: lineHeight ? lineHeight : null,
         fontSize: size ? size : 14,
         fontFamily: fontFamily == 'bold' ? 'Istok-Bold' : 'Istok-Regular',
         textAlign: center,

@@ -19,6 +19,8 @@ import BottomTabs from './BottomNavigators';
 import DetailMarketPages from '@pages/DetailMarketPages';
 import LoginPages from '@pages/LoginPages';
 import PasswordPages from '@pages/PasswordPages';
+import DetailDiscoverPages from '@pages/CoinMarketsPages';
+import DiscoverDetailOrganismsNext from '@organisms/DiscoverDetailNext';
 
 const Stack = createStackNavigator();
 
@@ -68,6 +70,11 @@ const StackNavigator = () => {
       <Stack.Screen name="DetailMarketsPages" component={DetailMarketPages} />
       <Stack.Screen name="LoginPages" component={LoginPages} />
       <Stack.Screen name="PasswordPages" component={PasswordPages} />
+      <Stack.Screen name="DetailDiscover" component={DetailDiscoverPages} />
+      <Stack.Screen
+        name="DetailDiscoverNext"
+        component={DiscoverDetailOrganismsNext}
+      />
     </Stack.Navigator>
   );
 };
