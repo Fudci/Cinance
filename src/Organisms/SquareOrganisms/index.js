@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Image, StatusBar, View} from 'react-native';
+import {Image, StatusBar, View, PanResponder} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Container from '@molecules/Container/Container';
 import {ColorsDark} from '@helpers/Color';
@@ -14,6 +14,7 @@ import CardDiscover from '@molecules/CardDiscover';
 
 function FeedScreen() {
   const [discoverData, setDiscoverData] = React.useState([]);
+  const [isRefresh, setIsRefresh] = React.useState(false);
   const getVersion = async () => {
     const version = firestore()
       .collection('Discover')
@@ -54,6 +55,10 @@ function FeedScreen() {
     return <CardDiscover item={item} index={index} />;
   };
 
+  const onScroll = event => {
+    console.log(event.nativeEvent.contentOffset.y);
+  };
+
   return (
     <View
       style={{
@@ -62,6 +67,10 @@ function FeedScreen() {
         backgroundColor: ColorsDark.PRIMARY_MAIN,
       }}>
       <FlatList
+        // onScroll={onScroll}
+        onRefresh={() => console.log('this')}
+        refreshing={isRefresh}
+        scrollEventThrottle={26}
         contentContainerStyle={{paddingBottom: 50}}
         initialNumToRender={20}
         windowSize={10}
@@ -152,9 +161,5 @@ function MyTabs() {
   );
 }
 export default function SquareOrganisms() {
-  return (
-    // <Container style={{marginTop: 50}}>
-    <MyTabs />
-    // </Container>
-  );
+  return <MyTabs />;
 }

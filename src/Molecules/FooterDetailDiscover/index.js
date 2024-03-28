@@ -1,17 +1,20 @@
-import {View, Text, TextInput, Animated, Pressable} from 'react-native';
+import {View, Text, Animated, Pressable} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import styles from './FooterDetailDiscover.styles';
 import RemixIcon from 'react-native-remix-icon';
 import {ColorsDark} from '@helpers/Color';
 import FormInputRegular from '@molecules/FormInputRegular';
+import TextInput from '@atom/TextInput';
 
-const FooterDetailDiscover = ({item}) => {
+const FooterDetailDiscover = ({item, isScroll}) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  const [isOpen, setisOpen] = useState(false);
+  const [text, setText] = useState('');
+  const [isOpen, setisOpen] = useState(false)
+
 
   useEffect(() => {
-    if (isOpen) {
+    if (isScroll) {
       Animated.timing(fadeAnim, {
         toValue: 1,
         duration: 300,
@@ -24,7 +27,7 @@ const FooterDetailDiscover = ({item}) => {
         useNativeDriver: false,
       }).start();
     }
-  }, [isOpen]);
+  }, [isScroll]);
 
   return (
     <View style={styles.container}>
@@ -32,15 +35,25 @@ const FooterDetailDiscover = ({item}) => {
         style={{
           width: fadeAnim.interpolate({
             inputRange: [0, 1],
-            outputRange: [0, 200],
+            outputRange: [0, 300],
           }),
-          backgroundColor: 'red',
+          opacity: fadeAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 1],
+          }),
           borderRadius: 5,
         }}>
-        <TextInput />
+        <View style={{height: 40}}>
+          <TextInput
+            style={{borderRadius: 10}}
+            placeholder={'Write a replay..'}
+            setActiveTextinput={setisOpen}
+            value={text}
+            setvalueText={setText}
+          />
+        </View>
       </Animated.View>
       <Pressable
-        onPress={() => setisOpen(!isOpen)}
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -55,28 +68,27 @@ const FooterDetailDiscover = ({item}) => {
             size={15}
             color={ColorsDark.TEXT_INACTIVE}
           />
-          <Text size={10} color={ColorsDark.TEXT_INACTIVE}>
+          <Text
+            style={{display: isScroll ? 'none' : 'flex'}}
+            size={10}
+            color={ColorsDark.TEXT_INACTIVE}>
             1
           </Text>
         </View>
-        <View style={{flexDirection: 'row', gap: 5, alignItems: 'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            gap: 5,
+            alignItems: 'center',
+            display: isScroll ? 'none' : 'flex',
+          }}>
           <RemixIcon
             name="ri-message-2-line"
             size={15}
             color={ColorsDark.TEXT_INACTIVE}
           />
           <Text size={10} color={ColorsDark.TEXT_INACTIVE}>
-            1
-          </Text>
-        </View>
-        <View style={{flexDirection: 'row', gap: 5, alignItems: 'center'}}>
-          <RemixIcon
-            name="ri-thumb-up-fill"
-            size={15}
-            color={ColorsDark.TEXT_INACTIVE}
-          />
-          <Text size={10} color={ColorsDark.TEXT_INACTIVE}>
-            1
+            33
           </Text>
         </View>
         <View style={{flexDirection: 'row', gap: 5, alignItems: 'center'}}>
@@ -87,7 +99,10 @@ const FooterDetailDiscover = ({item}) => {
               color={ColorsDark.TEXT_INACTIVE}
             />
           </View>
-          <Text size={10} color={ColorsDark.TEXT_INACTIVE}>
+          <Text
+            style={{display: isScroll ? 'none' : 'flex'}}
+            size={10}
+            color={ColorsDark.TEXT_INACTIVE}>
             1
           </Text>
         </View>
@@ -97,7 +112,10 @@ const FooterDetailDiscover = ({item}) => {
             size={15}
             color={ColorsDark.TEXT_INACTIVE}
           />
-          <Text size={10} color={ColorsDark.TEXT_INACTIVE}>
+          <Text
+            style={{display: isScroll ? 'none' : 'flex'}}
+            size={10}
+            color={ColorsDark.TEXT_INACTIVE}>
             1
           </Text>
         </View>

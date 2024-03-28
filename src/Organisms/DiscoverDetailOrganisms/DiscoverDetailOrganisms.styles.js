@@ -6,49 +6,34 @@ export default StyleSheet.create({
   container: {
     // flex: 1,
     // height: 2000,
-    padding: pixelSizeHorizontal(16),
+    // padding: pixelSizeHorizontal(16),
     // gap: 20,
+  },
+  wrapper: {
+    paddingHorizontal: pixelSizeHorizontal(10),
+  },
+  wrapperContent: {
+    paddingHorizontal: pixelSizeHorizontal(10),
+    gap: 20,
   },
   body: {
     gap: 15,
     marginTop: 20,
   },
-  buttonClose: {
-    marginTop: 30,
-  },
-  imageCyrpto: {
-    width: 250,
-    height: 250,
-    alignSelf: 'center',
-  },
-  leftIcon: {
-    position: 'absolute',
-    left: 20,
-  },
-  buttonSignUp: {
+  wrapperCount: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
-    backgroundColor: '#FCD434',
+    gap: 15,
     alignItems: 'center',
-    gap: 10,
+    borderTopWidth: 0.2,
+    borderBottomColor: ColorsDark.PRIMARY_DISABLED,
+    borderTopColor: ColorsDark.TEXT_INACTIVE,
+    borderBottomWidth: 0.2,
     paddingVertical: 10,
-    borderRadius: 0,
+    paddingHorizontal: 16,
+  },
+  countItem: {
+    flexDirection: 'row',
+    gap: 2,
     justifyContent: 'center',
-  },
-  wrapperOr: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    gap: 5,
-  },
-  wrapperRow: {
-    flexDirection: 'row',
-    gap: 5,
-  },
-  line: {
-    backgroundColor: '#A9A9A9',
-    height: 0.5,
-    flex: 1,
-    width: '100%',
   },
 });

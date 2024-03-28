@@ -245,7 +245,7 @@ const BottomTabs = () => {
         }}
         style={{
           borderRadius: 12,
-          bottom: -10,
+          bottom: -5,
           marginBottom: 30,
           width: 40,
           height: 40,
